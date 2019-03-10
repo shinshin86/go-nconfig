@@ -1,0 +1,6 @@
+{
+  "hostname": "example.com",
+  "database": {
+    "dbname": "dbname-prod"
+  }
+}
