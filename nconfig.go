@@ -2,12 +2,18 @@ package nconfig
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/imdario/mergo"
 	"github.com/spf13/viper"
 )
 
-func LoadConfig(filename string) map[string]interface{} {
+type Config struct {
+	val      map[string]interface{}
+	filename string
+}
+
+func NewConfig(filename string) *Config {
 	var configmap map[string]interface{}
 	DEFAULT_DIR := "./config"
 	DEFAULT_CONFIG := "default"
@@ -34,7 +40,30 @@ func LoadConfig(filename string) map[string]interface{} {
 		configmap = merge(v, v2)
 	}
 
-	return configmap
+	return &Config{
+		val:      configmap,
+		filename: filename,
+	}
+}
+
+func (config *Config) Get(key string) string {
+	keys := strings.Split(key, ".")
+	if len(keys) == 1 {
+		return config.val[keys[0]].(string)
+	}
+
+	var val string
+	var configmap map[string]interface{}
+	for i, s := range keys {
+		if i != (len(keys) - 1) {
+			configmap = config.val[keys[i]].(map[string]interface{})
+		}
+		if i == (len(keys) - 1) {
+			val = configmap[s].(string)
+		}
+
+	}
+	return val
 }
 
 func merge(v1, v2 *viper.Viper) map[string]interface{} {

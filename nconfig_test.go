@@ -4,48 +4,44 @@ import (
 	"testing"
 )
 
-func TestLoadConfig(t *testing.T) {
-	config := LoadConfig("default")
-
-	dbuser := "username"
-	configDbUser := config["database"].(map[string]interface{})["user"]
-	if dbuser != configDbUser {
-		t.Errorf("got %v\nwant %v", configDbUser, dbuser)
-	}
-	dbname := "dbname-dev"
-	configDbname := config["database"].(map[string]interface{})["dbname"]
-	if dbname != configDbname {
-		t.Errorf("got %v\nwant %v", configDbname, dbname)
-	}
+func TestNewConfig(t *testing.T) {
+	config := NewConfig("default")
 
 	hostname := "localhost:8080"
-	configHostname := config["hostname"]
-
-	if hostname != configHostname {
-		t.Errorf("got %v\nwant %v", configHostname, hostname)
+	if hostname != config.Get("hostname") {
+		t.Errorf("got %v\nwant %v", config.Get("hostname"), hostname)
 	}
+
+	dbuser := "username"
+	if dbuser != config.Get("database.user") {
+		t.Errorf("got %v\nwant %v", config.Get("database.user"), dbuser)
+	}
+
+	dbname := "dbname-dev"
+	if dbname != config.Get("database.dbname") {
+		t.Errorf("got %v\nwant %v", config.Get("database.dbname"), dbname)
+	}
+
 	// t.Log(config)
 }
 
-func TestLoadConfigSpecifyConfig(t *testing.T) {
-	config := LoadConfig("production")
-
-	dbuser := "username"
-	configDbUser := config["database"].(map[string]interface{})["user"]
-	if dbuser != configDbUser {
-		t.Errorf("got %v\nwant %v", configDbUser, dbuser)
-	}
-	dbname := "dbname-prod"
-	configDbname := config["database"].(map[string]interface{})["dbname"]
-	if dbname != configDbname {
-		t.Errorf("got %v\nwant %v", configDbname, dbname)
-	}
+func TestNewConfigSpecifyConfig(t *testing.T) {
+	config := NewConfig("production")
 
 	hostname := "example.com"
-	configHostname := config["hostname"]
-
-	if hostname != configHostname {
-		t.Errorf("got %v\nwant %v", configHostname, hostname)
+	if hostname != config.Get("hostname") {
+		t.Errorf("got %v\nwant %v", config.Get("hostname"), hostname)
 	}
+
+	dbuser := "username"
+	if dbuser != config.Get("database.user") {
+		t.Errorf("got %v\nwant %v", config.Get("database.user"), dbuser)
+	}
+
+	dbname := "dbname-prod"
+	if dbname != config.Get("database.dbname") {
+		t.Errorf("got %v\nwant %v", config.Get("database.dbname"), dbname)
+	}
+
 	// t.Log(config)
 }
