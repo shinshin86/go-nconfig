@@ -5,7 +5,7 @@ import (
 )
 
 func TestNewConfig(t *testing.T) {
-	config := NewConfig("default")
+	config := New("default")
 
 	hostname := "localhost:8080"
 	if hostname != config.Get("hostname") {
@@ -61,7 +61,7 @@ func TestNewConfig(t *testing.T) {
 }
 
 func TestNewConfigSpecifyConfig(t *testing.T) {
-	config := NewConfig("production")
+	config := New("production")
 
 	hostname := "example.com"
 	if hostname != config.Get("hostname") {

@@ -13,7 +13,7 @@ type Config struct {
 	filename string
 }
 
-func NewConfig(filename string) *Config {
+func New(filename string) *Config {
 	var configmap map[string]interface{}
 	DEFAULT_DIR := "./config"
 	DEFAULT_CONFIG := "default"
