@@ -52,18 +52,22 @@ func (config *Config) Get(key string) string {
 		return config.val[keys[0]].(string)
 	}
 
-	var val string
-	var configmap map[string]interface{}
-	for i, s := range keys {
-		if i != (len(keys) - 1) {
-			configmap = config.val[keys[i]].(map[string]interface{})
-		}
-		if i == (len(keys) - 1) {
-			val = configmap[s].(string)
-		}
-
+	switch len(keys) {
+	case 1:
+		return config.val[keys[0]].(string)
+	case 2:
+		return config.val[keys[0]].(map[string]interface{})[keys[1]].(string)
+	case 3:
+		return config.val[keys[0]].(map[string]interface{})[keys[1]].(map[string]interface{})[keys[2]].(string)
+	case 4:
+		return config.val[keys[0]].(map[string]interface{})[keys[1]].(map[string]interface{})[keys[2]].(map[string]interface{})[keys[3]].(string)
+	case 5:
+		return config.val[keys[0]].(map[string]interface{})[keys[1]].(map[string]interface{})[keys[2]].(map[string]interface{})[keys[3]].(map[string]interface{})[keys[4]].(string)
+	case 6:
+		return config.val[keys[0]].(map[string]interface{})[keys[1]].(map[string]interface{})[keys[2]].(map[string]interface{})[keys[3]].(map[string]interface{})[keys[4]].(map[string]interface{})[keys[5]].(string)
+	default:
+		return "This depth is not supported"
 	}
-	return val
 }
 
 func merge(v1, v2 *viper.Viper) map[string]interface{} {
