@@ -9,8 +9,8 @@ import (
 )
 
 type Config struct {
-	val      map[string]interface{}
-	filename string
+	val  map[string]interface{}
+	name string
 }
 
 func New(filename string) *Config {
@@ -41,8 +41,8 @@ func New(filename string) *Config {
 	}
 
 	return &Config{
-		val:      configmap,
-		filename: filename,
+		val:  configmap,
+		name: filename,
 	}
 }
 

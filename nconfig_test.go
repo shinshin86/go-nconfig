@@ -5,7 +5,12 @@ import (
 )
 
 func TestNewConfig(t *testing.T) {
-	config := New("default")
+	configname := "default"
+	config := New(configname)
+
+	if configname != config.name {
+		t.Errorf("got %v\nwant %v", config.name, configname)
+	}
 
 	hostname := "localhost:8080"
 	if hostname != config.Get("hostname") {
@@ -61,7 +66,12 @@ func TestNewConfig(t *testing.T) {
 }
 
 func TestNewConfigSpecifyConfig(t *testing.T) {
-	config := New("production")
+	configname := "production"
+	config := New(configname)
+
+	if configname != config.name {
+		t.Errorf("got %v\nwant %v", config.name, configname)
+	}
 
 	hostname := "example.com"
 	if hostname != config.Get("hostname") {
