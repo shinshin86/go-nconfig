@@ -1,4 +1,4 @@
-module nconfig
+module github.com/shinshin86/go-nconfig
 
 go 1.12
 
