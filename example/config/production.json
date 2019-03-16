@@ -1,0 +1,29 @@
+{
+  "hostname": "example.com",
+  "database": {
+    "dbname": "dbname-prod"
+  },
+  "apis": {
+    "servicea": {
+      "key": "keyaaa"
+    }
+  },
+  "dep1": {
+    "val": "prod1",
+    "dep2": {
+      "val": "prod2",
+      "dep3": {
+        "val": "prod3",
+        "dep4": {
+          "val": "prod4",
+          "dep5": {
+            "val": "prod5",
+            "dep6": {
+              "val": "prod6"
+            }
+          }
+        }
+      }
+    }
+  }
+}
