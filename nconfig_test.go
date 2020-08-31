@@ -8,8 +8,8 @@ func TestNewConfig(t *testing.T) {
 	configname := "default"
 	config := New(configname)
 
-	if configname != config.name {
-		t.Errorf("got %v\nwant %v", config.name, configname)
+	if configname != config.Name {
+		t.Errorf("got %v\nwant %v", config.Name, configname)
 	}
 
 	hostname := "localhost:8080"
@@ -69,8 +69,8 @@ func TestNewConfigSpecifyConfig(t *testing.T) {
 	configname := "production"
 	config := New(configname)
 
-	if configname != config.name {
-		t.Errorf("got %v\nwant %v", config.name, configname)
+	if configname != config.Name {
+		t.Errorf("got %v\nwant %v", config.Name, configname)
 	}
 
 	hostname := "example.com"
