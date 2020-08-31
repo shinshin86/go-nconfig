@@ -55,9 +55,6 @@ func New(filename string) *Config {
 // Get the value of the configuration file with specified key
 func (config *Config) Get(key string) string {
 	keys := strings.Split(key, ".")
-	if len(keys) == 1 {
-		return config.val[keys[0]].(string)
-	}
 
 	v := config.val
 	var val string
