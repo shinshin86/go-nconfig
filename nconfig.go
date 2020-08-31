@@ -20,6 +20,10 @@ func New(filename string) *Config {
 	DefaultDir := "./config"
 	DefaultConfig := "default"
 
+	if filename == "" {
+		filename = DefaultConfig
+	}
+
 	v := viper.New()
 	v.AddConfigPath(DefaultDir)
 	v.SetConfigName(DefaultConfig)
