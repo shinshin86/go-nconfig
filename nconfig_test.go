@@ -58,7 +58,7 @@ func TestNewConfig(t *testing.T) {
 	if dep5 != config.Get("dep1.dep2.dep3.dep4.dep5.val") {
 		t.Errorf("got %v\nwant %v", config.Get("dep1.dep2.dep3.dep4.dep5.val"), dep5)
 	}
-	dep6 := "This depth is not supported"
+	dep6 := "dev6"
 	if dep6 != config.Get("dep1.dep2.dep3.dep4.dep5.dep6.val") {
 		t.Errorf("got %v\nwant %v", config.Get("dep1.dep2.dep3.dep4.dep5.dep6.val"), dep6)
 	}
@@ -119,7 +119,7 @@ func TestNewConfigSpecifyConfig(t *testing.T) {
 	if dep5 != config.Get("dep1.dep2.dep3.dep4.dep5.val") {
 		t.Errorf("got %v\nwant %v", config.Get("dep1.dep2.dep3.dep4.dep5.val"), dep5)
 	}
-	dep6 := "This depth is not supported"
+	dep6 := "prod6"
 	if dep6 != config.Get("dep1.dep2.dep3.dep4.dep5.dep6.val") {
 		t.Errorf("got %v\nwant %v", config.Get("dep1.dep2.dep3.dep4.dep5.dep6.val"), dep6)
 	}
