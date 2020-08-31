@@ -127,9 +127,6 @@ func TestNewConfigSpecifyConfig(t *testing.T) {
 }
 
 func TestNewConfigNoNamesSpecified(t *testing.T) {
-	// TODO: Is it possible to write this way?
-	// config := New()
-
 	configname := "default"
 	config := New("")
 
