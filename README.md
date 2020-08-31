@@ -12,6 +12,7 @@ Install in your app directory. And edit the default config file.
 
 ```bash
 go mod init github.com/you/hello
+go get github.com/shinshin86/go-nconfig
 mkdir config
 vim config/default.json
 ```
