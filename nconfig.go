@@ -8,11 +8,13 @@ import (
 	"github.com/spf13/viper"
 )
 
+// Config store on config name and config values
 type Config struct {
 	val  map[string]interface{}
 	Name string
 }
 
+// New is returns the config loaded with the specified configuration name
 func New(filename string) *Config {
 	var configmap map[string]interface{}
 	DEFAULT_DIR := "./config"
@@ -46,6 +48,7 @@ func New(filename string) *Config {
 	}
 }
 
+// Get the value of the configuration file with specified key
 func (config *Config) Get(key string) string {
 	keys := strings.Split(key, ".")
 	if len(keys) == 1 {
