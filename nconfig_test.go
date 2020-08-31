@@ -62,7 +62,6 @@ func TestNewConfig(t *testing.T) {
 	if dep6 != config.Get("dep1.dep2.dep3.dep4.dep5.dep6.val") {
 		t.Errorf("got %v\nwant %v", config.Get("dep1.dep2.dep3.dep4.dep5.dep6.val"), dep6)
 	}
-	// t.Log(config)
 }
 
 func TestNewConfigSpecifyConfig(t *testing.T) {
@@ -123,7 +122,6 @@ func TestNewConfigSpecifyConfig(t *testing.T) {
 	if dep6 != config.Get("dep1.dep2.dep3.dep4.dep5.dep6.val") {
 		t.Errorf("got %v\nwant %v", config.Get("dep1.dep2.dep3.dep4.dep5.dep6.val"), dep6)
 	}
-	// t.Log(config)
 }
 
 func TestNewConfigNoNamesSpecified(t *testing.T) {
@@ -184,5 +182,4 @@ func TestNewConfigNoNamesSpecified(t *testing.T) {
 	if dep6 != config.Get("dep1.dep2.dep3.dep4.dep5.dep6.val") {
 		t.Errorf("got %v\nwant %v", config.Get("dep1.dep2.dep3.dep4.dep5.dep6.val"), dep6)
 	}
-	// t.Log(config)
 }
