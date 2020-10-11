@@ -1,4 +1,4 @@
-# go-nconfig (WIP)
+# go-nconfig
 
 [![Build Status](https://travis-ci.org/shinshin86/go-nconfig.svg?branch=master)](https://travis-ci.org/shinshin86/go-nconfig)
 
@@ -25,8 +25,6 @@ Setup `default.json`
 {
   "hostname": "localhost:8080",
   "database": {
-    "user": "username",
-    "pass": "password",
     "protocol": "tcp(127.0.0.1:3306)",
     "dbname": "dbname-dev"
   }
@@ -56,7 +54,8 @@ func main() {
 	config := nconfig.New("default")
 
 	fmt.Println("hostname : ", config.Get("hostname"))
-	fmt.Println("dbname : ", config.Get("database.user"))
+	fmt.Println("database.protocol : ", config.Get("database.protocol"))
+	fmt.Println("database.dbname : ", config.Get("database.dbname"))
 }
 ```
 
@@ -65,7 +64,8 @@ func main() {
 ```bash
 go run main.go
 # ==> hostname :  localhost:8080
-# ==> dbname :  username
+# ==> database.protocol :  tcp(127.0.0.1:3306)
+# ==> database.dbname :  dbname-dev
 ```
 
 
@@ -75,22 +75,100 @@ go run main.go
 Reading specify config file.
 ( Not set value is refer to default.json )
 
+
+
+default.json
+
+```json
+{
+  "hostname": "localhost:8080",
+  "database": {
+    "protocol": "tcp(127.0.0.1:3306)",
+    "dbname": "dbname-dev"
+  },
+  "dep1": {
+    "val": "dev1",
+    "dep2": {
+      "val": "dev2",
+      "dep3": {
+        "val": "dev3",
+        "dep4": {
+          "val": "dev4",
+          "dep5": {
+            "val": "dev5",
+            "dep6": {
+              "val": "dev6"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+```
+
+
+
+production.json
+
+```json
+{
+  "hostname": "example.com",
+  "database": {
+    "dbname": "dbname-prod"
+  },
+  "dep1": {
+    "val": "prod1",
+    "dep2": {
+      "val": "prod2",
+      "dep3": {
+        "val": "prod3",
+        "dep4": {
+          "val": "prod4",
+          "dep5": {
+            "val": "prod5",
+            "dep6": {
+              "val": "prod6"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+```
+
+
+
+main.go
+
 ```go
 package main
 
 import (
-        "fmt"
+	"fmt"
 
-        "github.com/shinshin86/go-nconfig"
+	"github.com/shinshin86/go-nconfig"
 )
 
 func main() {
-        config := nconfig.New("production")
+	config := nconfig.New("production")
 
-        fmt.Println("=== Read config sample ===")
-        fmt.Println("hostname : ", config.Get("hostname"))
-        fmt.Println("dbname : ", config.Get("database.user"))
-        fmt.Println("dep5 value : ", config.Get("dep1.dep2.dep3.dep4.dep5.val"))
+	fmt.Println("hostname : ", config.Get("hostname"))
+	fmt.Println("database.protocol : ", config.Get("database.protocol"))
+	fmt.Println("database.dbname : ", config.Get("database.dbname"))
+	fmt.Println("dep6 value : ", config.Get("dep1.dep2.dep3.dep4.dep5.dep6.val"))
 }
 ```
 
+
+
+```bash
+go run main.go
+# ==> hostname :  example.com
+# ==> database.protocol :  tcp(127.0.0.1:3306)
+# ==> database.dbname :  dbname-prod
+# ==> dep6 value :  prod6
+```
