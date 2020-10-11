@@ -1,18 +1,8 @@
 {
   "hostname": "localhost:8080",
   "database": {
-    "user": "username",
-    "pass": "password",
     "protocol": "tcp(127.0.0.1:3306)",
     "dbname": "dbname-dev"
-  },
-  "apis": {
-    "servicea": {
-      "key": "foobar"
-    },
-    "serviceb": {
-      "key": "barfoo"
-    }
   },
   "dep1": {
     "val": "dev1",

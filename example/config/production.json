@@ -3,11 +3,6 @@
   "database": {
     "dbname": "dbname-prod"
   },
-  "apis": {
-    "servicea": {
-      "key": "keyaaa"
-    }
-  },
   "dep1": {
     "val": "prod1",
     "dep2": {
